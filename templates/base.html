@@ -15,21 +15,36 @@
     {% endblock title %}
 </head>
 <body>
-<div class="wrapper"></div>
+<div class="wrapper">
 
-{% block menue %}
-
-{% endblock menue %}
+{% block menu %}
+<header class="header">
+    <ul class="main_menu">
+        <li><a href="#"><p>Main</p></a></li>
+        <li><a href="#"><p>Blog</p></a></li>
+        <li><a href="#"><p>SingUp</p></a></li>
+        <li><a href="#"><p>Login</p></a></li>
+        <li><a href="#"><p>Profile</p></a></li>
+        <li><a href="#"><p>Create</p></a></li>
+        <li><a href="#"><p>Logout</p></a></li>
+    </ul>
+</header>
+{% endblock menu %}
 
 {% block content %}
 
 {% endblock content %}
 
 {% block main_page %}
+    <div class="content"></div>
 
 {% endblock main_page %}
 
 {% block footer %}
+    <footer class="footer">All rights reserved!<br>
+        &#169; Uspex Zdet 2023
+    </footer>
+
 
 {% endblock footer %}
 
