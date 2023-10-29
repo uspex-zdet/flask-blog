@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login_form">
+
+    <form action="" method="POST">
+
+        {{ form.hidden_tag() }}
+            <legend class="legend">{{ legend }}</legend>
+
+                {% if form.username.errors %}
+                {{ form.username(class='form-post-title is-invalid', placeholder='username') }}
+                <div class="invalid-feedback">
+                    {%  for errors in form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form.username(class='form-post-title', placeholder='username') }}
+                {% endif %}
+
+                {% if form.email.errors %}
+                {{ form.email(class='form-post-title is-invalid', placeholder='email') }}
+                <div class="invalid-feedback">
+                    {%  for errors in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form.email(class='form-post-title', placeholder='email') }}
+                {% endif %}
+
+                {% if form.password.errors %}
+                {{ form.password(class='form-post-title is-invalid', placeholder='password') }}
+                <div class="invalid-feedback">
+                    {%  for errors in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form.password(class='form-post-title', placeholder='password') }}
+                {% endif %}
+
+                {% if form.confirm_password.errors %}
+                {{ form.confirm_password(class='form-post-title is-invalid', placeholder='confirm password') }}
+                <div class="invalid-feedback">
+                    {%  for errors in form.confirm_password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form.confirm_password(class='form-post-title', placeholder='confirm password') }}
+                {% endif %}
+
+            <div class="form-group">
+                {{ form.submit(class='btn_sign_in') }}
+{#                {% if form.is_submitted() and form.errors|count > 0 %}#}
+{#                <div class="alert alert-danger alert-dismissible fade show" role="alert">#}
+{#                    {{ form.errors|count }} error(s):#}
+{#                    {% for field_name, field_errors in form.errors|dictsort if field_errors %}#}
+{#                        {% for error in field_errors %}#}
+{#                            <li>{{ form[field_name].label }}: {{ error }}</li>#}
+{#                        {% endfor %}#}
+{#                    {% endfor %}#}
+{#                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+{#                </div>#}
+{#                  {% endif %}#}
+            </div>
+    </form>
+</div>
+
+<div class="border-top">
+    <small class='text-muted'>
+        Already have an account?<a class="ml-2" href="{{ url_for('users.login') }}">Login</a>
+    </small>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monsieur La Doulaise&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allison&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fleur De Leah&display=swap');
+*{
+
+margin: 0;
+padding: 0;
+
+}
+
+
+html, body{
+    height: 100%;
+
+}
+
+/*LOGO*/
+.logo img{
+    float: left;
+    margin: 50px;
+    margin-top: 0;
+    width: 160px;
+}
+
+
+
+/*MAIN MENU*/
+.header{
+    height: 125px;
+    background-image: radial-gradient( rgba(152, 251, 152,0.5), rgba(221, 160, 221,1) );
+    outline: 1px violet solid;
+}
+
+.main_menu{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+}
+
+.main_menu a{
+    text-decoration: none;
+    color: indigo;
+    font-weight: 400;
+}
+
+.main_menu li{
+    list-style: none;
+    outline: 1px  indigo  solid;
+    margin-right: 5px;
+    width: 120px;
+    margin-top: 8%;
+    box-shadow: 10px 10px 10px rgba(152, 251, 152,0.5);
+    font-family: Caveat;
+    border-radius: 10px 100px / 120px;
+    text-align: center;
+
+}
+
+.main_menu li:hover{
+    transition-duration: 0.5s;
+    box-shadow: 5px 5px 40px indigo;
+}
+
+.main_menu p{
+    font-size: 21px;
+
+}
+
+/*WRAPPER*/
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/*CONTENT*/
+.content{
+    width: 60%;
+    margin: 100px auto 0;
+    flex: 1 0 auto;
+}
+
+
+/*MAIN_PAGE*/
+.info{
+    display: flex;
+    margin:0 auto;
+    width: 25%;
+    /*outline: 1px green solid;*/
+    /*box-shadow: 10px 10px 10px indigo;*/
+    align-items: center;
+    /*border-radius: 10px;*/
+    font-family: Caveat;
+    /*color: green;*/
+}
+
+.description{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.names{
+    /*box-shadow: 10px 10px 10px indigo;*/
+    /*border-radius: 10px 100px / 120px;*/
+    padding: 1px 1px;
+    letter-spacing: 1px;
+    font-family: Fleur De Leah;
+    font-size: 35px;
+    color: SeaGreen;
+
+
+
+}
+.desc{
+    width: 80%;
+    font-weight: 400;
+    font-size: 21px;
+    color: indigo;
+    margin: 0 auto;
+    text-align: center;
+
+}
+desc li{
+    margin-bottom: 10px;
+    font-style: normal;
+    padding: 5px;
+    font-family:Caveat;
+    text-align: center;
+}
+
+ul.checkmark li:before{
+    content: "\2713\0020";
+    color: indigo;
+}
+
+ul a{
+    text-decoration: underline;
+    color: indigo;
+
+}
+
+.checkmark li:hover{
+    transition-duration: 0.1s;
+    box-shadow: 10px 10px 10px #DDA0DD;
+    border-radius: 10px 100px / 120px;
+}
+
+.checkmark li{
+    list-style: none;
+}
+
+
+/*FOOTER*/
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    outline: 1px violet solid;
+    font-size: 15px;
+    font-family: Caveat ;
+    background-image: radial-gradient( rgba(152, 251, 152,0.5), rgba(221, 160, 221,1) );;
+    flex: 0 0 auto;
+}

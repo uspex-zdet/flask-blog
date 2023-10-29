@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block main_page %}
+    <div class="wrapper">
+        <div class="info">
+            <div class="description">
+                <p class="names">Aila cosmetics' articles:</p>
+            <div class="desc">
+                <ul class="checkmark">
+                    <li><a href="{{  url_for('main.novelty_page')}}">Cosmetics novelty</a></li>
+                    <li><a href="{{url_for('main.skincare_page')}}">Skincare</a></li>
+                    <li><a href="{{url_for('main.decorative_page')}}">Decorative cosmetics</a></li>
+                    <li><a href="{{url_for('main.hand_made_page')}}">Hand-made</a></li>
+                    <li><a href="{{url_for('main.dangerous_page')}}"> Dangerous ingredients</a></li>
+                    <li><a href="{{url_for('main.procedures_page')}}">Cosmetics procedures</a></li>
+                    <li><a href="{{url_for('main.recipes_page')}}">Recipes for youth</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_page %}
