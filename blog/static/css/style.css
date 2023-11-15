@@ -52,6 +52,7 @@ html, body{
     margin-top: 8%;
     box-shadow: 10px 10px 10px rgba(152, 251, 152,0.5);
     font-family: Caveat;
+    font-style: oblique ;
     border-radius: 10px 100px / 120px;
     text-align: center;
 
@@ -77,7 +78,7 @@ html, body{
 /*CONTENT*/
 .content{
     width: 60%;
-    margin: 100px auto 0;
+    margin: 0 auto;
     flex: 1 0 auto;
 }
 
@@ -87,12 +88,8 @@ html, body{
     display: flex;
     margin:0 auto;
     width: 25%;
-    /*outline: 1px green solid;*/
-    /*box-shadow: 10px 10px 10px indigo;*/
     align-items: center;
-    /*border-radius: 10px;*/
     font-family: Caveat;
-    /*color: green;*/
 }
 
 .description{
@@ -101,17 +98,13 @@ html, body{
 }
 
 .names{
-    /*box-shadow: 10px 10px 10px indigo;*/
-    /*border-radius: 10px 100px / 120px;*/
     padding: 1px 1px;
     letter-spacing: 1px;
     font-family: Fleur De Leah;
     font-size: 35px;
     color: SeaGreen;
-
-
-
 }
+
 .desc{
     width: 80%;
     font-weight: 400;
@@ -119,11 +112,10 @@ html, body{
     color: indigo;
     margin: 0 auto;
     text-align: center;
-
 }
+
 desc li{
     margin-bottom: 10px;
-    font-style: normal;
     padding: 5px;
     font-family:Caveat;
     text-align: center;
@@ -135,9 +127,8 @@ ul.checkmark li:before{
 }
 
 ul a{
-    text-decoration: underline;
+    text-decoration:1px underline;
     color: indigo;
-
 }
 
 .checkmark li:hover{
@@ -154,13 +145,523 @@ ul a{
 /*FOOTER*/
 .footer{
     display: flex;
+    flex: 0 0 auto;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 40px;
+    /*height: 40px;*/
     outline: 1px violet solid;
     font-size: 15px;
     font-family: Caveat ;
+    font-style: oblique ;
     background-image: radial-gradient( rgba(152, 251, 152,0.5), rgba(221, 160, 221,1) );;
-    flex: 0 0 auto;
+
 }
+
+/* BLOG // USER_POSTS*/
+
+.post{
+    flex: 1 0 auto;
+    /*height: 100%;*/
+    margin: 20px 50px 50px 50px;
+
+}
+.info_user_blog{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.posts_blog {
+    text-align: left;
+    margin:0 100px 30px 100px;
+    outline: 1px violet solid;
+    border-radius: 10px 10px 10px;
+    background-color: rgba(221, 160, 221,0.2);
+}
+
+
+
+.rounded-circle{
+    width: 50px;
+    height: auto;
+    border-radius: 100%;
+    margin: 10px 0 0 20px;
+    outline: 1px darkgreen solid;
+
+}
+.mr-2{
+    padding: 3px;
+    font-family: Caveat ;
+    font-style: oblique;
+    font-size: 23px;
+    font-weight: 500;
+    color: indigo;
+}
+
+.text-muted-v2{
+    padding: 5px;
+    font-family: Caveat ;
+    /*font-style: normal;*/
+    font-size: 20px;
+    /*font-weight: 600;*/
+    color: darkgreen;
+}
+
+.article-title{
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px 10px 10px 20px ;
+    font-family: Caveat ;
+    font-size:30px;
+    /*text-decoration: 1px;*/
+    color: darkgreen;
+
+}
+
+.article-content{
+    padding: 10px;
+    font-family: Caveat ;
+    font-size: 20px;
+    font-weight: 500;
+    color: indigo;
+}
+.mb-3{
+    margin-left:50px;
+    padding: 5px;
+    font-family: Caveat ;
+    font-size:25px;
+    color: seagreen;
+}
+
+.posts_blog img{
+    width: auto;
+    height: 100px;
+    float: initial;
+    margin: 0 0 0 50px;
+    border-radius:  10% 10% 10%;
+    outline: 1px solid seagreen;
+
+}
+.info_posts_user{
+    align-items: center;
+    margin: 10px 0 20px 150px;
+}
+
+
+.info_posts_user p{
+    font-family: Caveat;
+    font-size: 25px;
+    color: darkgreen;
+}
+
+.info_posts_user_page{
+    text-align: left;
+    margin-left: 50px;
+    font-size: 21px;
+    color: indigo;
+}
+
+.info_posts_user_page a{
+    /*text-decoration: none;*/
+    font-family:Caveat;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.create_post_btn{
+    margin-top: 10px;
+    font-family:Caveat;
+    color: indigo;
+    border-radius: 10px 100px / 120px;
+    background-color: rgba(152, 251, 152, 0.3);
+    border: 1px solid indigo;
+    cursor: pointer;
+    width: 120px;
+}
+
+.btn_sign_in{
+    font-size: 21px;
+    padding: 5px;
+    text-decoration: none;
+
+}
+
+.create_post_btn:hover {
+    transition-duration: 0.5s;
+    box-shadow: 5px 5px 40px indigo;
+}
+
+/*POST*/
+
+.user_info_single_post{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.img_cont{
+flex: 1 0 auto;
+    /*height: 100%;*/
+    margin: 0 auto;
+}
+
+.img_cont img{
+    float: right;
+    width: 400px;
+    height: auto;
+    padding: 2px;
+    margin: 10px;
+    border-radius:  5% 5% 5%;
+    outline: 1px solid seagreen;
+
+}
+
+.right_side{
+    margin:35px 450px 0 0;
+}
+
+
+.btn.btn-info.mb-5{
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 1px 20px 1px 20px;
+    font-family:Caveat;
+    font-style: oblique;
+    font-size: 21px;
+    color: indigo;
+    border-radius: 5px;
+    background-color: rgba(152, 251, 152,0.5);
+    border: 1px solid indigo;
+}
+
+.btn.btn-info.mb-5:hover{
+    transition-duration: 0.1s;
+    border-radius: 5px;
+    box-shadow: 5px 5px 40px indigo;
+
+}
+
+.right_side button{
+    padding: 1px 20px 1px 20px;
+    font-family:Caveat;
+    font-style: oblique;
+    font-size: 21px;
+    color: indigo;
+    border-radius: 5px;
+    background-color: rgba(2220, 20, 60, 0.5);
+    border: 1px solid indigo;
+
+}
+
+.right_side button:hover{
+    transition-duration: 0.1s;
+    border-radius: 5px;
+    box-shadow: 5px 5px 40px indigo;
+
+}
+/* MODAL*/
+
+.fade{
+    display: none; /* Hidden by default */
+    position: fixed ; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+.modal-dialog{
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid indianred;
+    width: 40%;
+
+}
+.modal-header{
+    text-align: center;
+    font-family: Caveat;
+    font-weight: 500;
+    font-size: 30px;
+    color: indigo;
+}
+
+.modal-body{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-top: 30px;
+
+}
+
+.btn-danger{
+    padding: 1px 20px 1px 20px;
+    font-family:Caveat;
+    font-style: oblique;
+    font-size: 21px;
+    color: indigo;
+    border-radius: 5px;
+    background-color: rgba(2220, 20, 60, 0.5);
+    border: 1px solid indigo;
+
+}
+
+.btn-danger:hover{
+    transition-duration: 0.1s;
+    border-radius: 5px;
+    box-shadow: 5px 5px 40px indigo;
+
+}
+
+.btn-secondary{
+    margin-left: 30px;
+    text-decoration: none;
+    padding: 1px 25px 1px 25px;
+    font-family:Caveat;
+    font-style: oblique;
+    font-size: 21px;
+    color: indigo;
+    border-radius: 5px;
+    background-color: rgba(152, 251, 152,0.5);
+    border: 1px solid indigo;
+}
+
+.btn-secondary:hover{
+    transition-duration: 0.1s;
+    border-radius: 5px;
+    box-shadow: 5px 5px 40px indigo;
+
+}
+
+
+/* PAGINATION */
+.post_paginate{
+    margin: 0 5px 20px 80px;
+    font-family:Caveat;
+    font-size: 19px;
+    color: indigo;
+}
+
+.btn.btn-info.mb-4{
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+    background-color: rgba(221, 160, 221,0.5);
+    border: 1px solid indigo;
+
+}
+
+.btn.btn-outline-success.mb-4:hover {
+    transition-duration: 0.1s;
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+    background-color: rgba(152, 251, 152,0.5);
+    border: 1px solid palegreen;
+}
+
+/*PROFILE*/
+
+.content-section{
+    display: flex;
+    width: auto;
+}
+
+.left_side{
+    width: 300%;
+    margin: 0 20px 10px 20px;
+}
+
+.left_side p{
+    padding: 2px;
+    font-family: Fleur De Leah;
+    font-size: 35px;
+    color: darkgreen;
+    letter-spacing: 1px;
+}
+
+.left_side li{
+    list-style: none;
+}
+
+.mr-5{
+    margin-left: 30px;
+    font-family: Caveat;
+    padding: 3px;
+    font-size: 17px;
+    color: red;
+}
+
+.list_posts{
+    width: 800%;
+    margin: 0 20px 0 20px ;
+
+
+}
+.list_posts p{
+    text-align: center;
+    padding: 2px;
+    font-family: Fleur De Leah;
+    font-size: 35px;
+    color: darkgreen;
+    letter-spacing: 1px;
+}
+.list_posts ol{
+    font-family: Caveat ;
+    font-size:21px;
+    color: indigo;
+}
+
+.article-title-2{
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+    padding: 3px ;
+    font-family: Caveat ;
+    font-size:21px;
+    color: indigo;
+}
+
+.right_side{
+    margin: 0px 50px auto 20px;
+    justify-content: end;
+}
+
+.card{
+    text-align: center;
+    align-items: center;
+    /*width: 300px;*/
+    /*border :none;*/
+}
+
+.profile-img{
+    width: 80px;
+    padding: 2px;
+    height: auto;
+    border-radius: 100%;
+    margin: 10px 0 0 20px;
+    outline: 1px darkgreen solid;
+
+}
+
+.profile-heading{
+    /*padding: 3px;*/
+    font-family: Caveat ;
+    font-style: oblique;
+    font-size: 25px;
+    font-weight: 500;
+    color: darkgreen;
+
+}
+.text-secondary{
+    padding: 3px;
+    font-family: Caveat ;
+    font-size: 25px;
+    font-weight: 500;
+    color: indigo;
+
+}
+/*PROFILE UPDATE*/
+
+.font_update{
+    /*padding-bottom: 10px;*/
+   align-items: center;
+   justify-content: center;
+   font-family: Fleur De Leah;
+   color: darkgreen;
+   font-size: 35px;
+   text-align: center;
+   letter-spacing: 1px;
+}
+
+.form-control-label{
+    font-family: Caveat ;
+    font-size: 21px;
+    font-style: oblique;
+    font-weight: 500;
+    color: darkgreen;
+
+}
+
+.form-control-lg{
+    display: block;
+    width: auto;
+    border: 1px solid indigo;
+    border-radius: 10px 100px / 120px;
+    padding: 0px 10px 0px 10px;
+    background: rgba(221, 160, 221,0.1);
+    font-family: Caveat;
+    font-weight: 500;
+    font-size: 23px;
+    color: indigo;
+}
+
+.form-control-lg::placeholder{
+    color: rgba(46, 139, 87, 0.9);
+    font-family: Caveat;
+
+
+}
+input#username.form-control-lg:focus,input#email.form-control-lg:focus{
+    border: 1px solid indigo;
+    border-radius: 10px 100px / 120px;
+    padding: 0 10px 0 10px;
+    background-color: rgba(152, 251, 152,0.1);
+    font-family: Caveat;
+    font-weight: 500;
+    font-size: 23px;
+    color: indigo;
+
+}
+input#username.form-control-lg.is-invalid,input#email.form-control-lg.is-invalid{
+    width: auto;
+    margin: 5px 0 5px 0;
+    border-radius: 10px 100px / 120px;
+    padding: 0px 10px 0px 10px;
+    background: rgba(221, 160, 221,0.1);
+    border: 1px solid red;
+    font-family: Caveat;
+    font-weight: 500;
+    font-size: 23px;
+    color: indianred;
+}
+
+
+.form-control-sm{
+    font-family: Caveat ;
+    font-size: 21px;
+    font-style: oblique;
+    font-weight: 500;
+    color: darkgreen;
+}
+
+.btn_2-1{
+  background-color: rgba(152, 251, 152, 0.3);
+  font-family:Caveat;
+  font-size: 23px;
+  color: indigo;
+  margin: 0 10px 10px 220px;
+  border-radius: 10px 100px / 120px;
+  padding: 5px;
+  border: 1px solid indigo;
+  cursor: pointer;
+  width: 80px;
+}
+
+.btn_2-1:hover {
+  transition-duration: 0.5s;
+  box-shadow: 5px 5px 40px indigo;
+  /*opacity: 0.8;*/
+}
+
+fieldset.form-group{
+    border: 1px solid seagreen;
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+}
+

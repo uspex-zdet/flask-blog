@@ -9,13 +9,11 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/forms_style.css') }}">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+
     {% block title %}
-        {% if title %}
-        <title>Flask-{{ title }}</title>
-        {% else %}
-        <title>Flask blog</title>
-        {% endif %}
+         <title>{{ title if title else 'Flask-blog' }}</title>
     {% endblock title %}
+
 </head>
 <body>
 <div class="wrapper">
@@ -26,17 +24,45 @@
     <img src="{{url_for('static',filename='img/new2.png')}}" alt="logo">
 </div>
     <ul class="main_menu">
+        {% if current_user.is_authenticated %}
         <li><a href="{{ url_for('main.home')}}"><p>Main</p></a></li>
         <li><a href="{{ url_for('main.blog')}}"><p>Blog</p></a></li>
+        <li><a href="{{ url_for('users.profile')}}"><p>Profile</p></a></li>
+        <li><a href="{{ url_for('post.new_post')}}"><p>Create</p></a></li>
+        <li><a href="{{ url_for('users.logout')}}"><p>Logout</p></a></li>
+
+        {% else %}
+        <li><a href="{{ url_for('main.home')}}"><p>Main</p></a></li>
         <li><a href="{{ url_for('users.signup')}}"><p>SignUp</p></a></li>
-        <li><a href="#"><p>Login</p></a></li>
-        <li><a href="#"><p>Profile</p></a></li>
-        <li><a href="#"><p>Create</p></a></li>
-        <li><a href="#"><p>Logout</p></a></li>
+        <li><a href="{{ url_for('users.login')}}"><p>Login</p></a></li>
+
+        {% endif %}
+
     </ul>
 </header>
 {% endblock menu %}
 
+<div class="content">
+{#        <div class="empty_block"></div>#}
+{#        <div class="empty_block"></div>#}
+<main role="main" class="#">
+            <div class="row">
+            <div class="col-md-12">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% endwith %}
+            </div>
+            </div>
+</main>
+</div>
 {% block content %}
     <style>
   body {

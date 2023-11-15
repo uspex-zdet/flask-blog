@@ -2,21 +2,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Monsieur La Doulaise&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Allison&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fleur De Leah&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree Serif&display=swap');
 
-/*REGISTRATION FORM*/
+ *{
+    margin: 0;
+    padding: 0;
+}
+/*REGISTRATION/LOGIN FORMS*/
+
 
 .login_form{
-    display: flex;
-    margin:0 auto;
-    width: 40%;
+    width: 300px;
+    display:flex ;
+    margin: 0 auto;
     align-items: center;
     justify-content: center;
-    /*font-family: Fleur De Leah;*/
-    /*color: SeaGreen;*/
 
 }
 
+.register_form{
+    display: flex;
+    margin:0 auto;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+}
+
 .legend{
+    padding-bottom: 10px;
   align-items: center;
   justify-content: center;
   font-family: Fleur De Leah;
@@ -25,32 +38,95 @@
    text-align: center;
   letter-spacing: 2px;
 }
-
-.form-post-title::placeholder{
-    padding-left: 10px;
+.form-post-title{
+    width: 100%;
+    margin: 5px 0 5px 0;
+    border: 1px solid indigo;
+    border-radius: 10px 100px / 120px;
+    padding: 5px 15px 5px 15px;
+    background: rgba(221, 160, 221,0.1);
     font-family: Caveat;
     font-weight: 500;
-    color: rgba(46, 139, 87, 0.9);
-    font-size: 20px;
+    font-size: 23px;
+    color: indigo;
+    /*color: rgba(46, 139, 87, 0.9);*/
 }
 
-input[type=text], input[type=password] {
-  width: 100%;
-  margin: 5px 0 5px 0;
-  display: inline-block;
-  border: 1px solid indigo;
-  border-radius: 10px 100px / 120px;
-  padding: 10px;
-  background: rgba(221, 160, 221,0.1);
+.form-post-title::placeholder{
+    color: rgba(46, 139, 87, 0.9);
+    font-family: Caveat;
+
+
 }
+
+/*input[type=text], input[type=password] {*/
+/*  width: 100%;*/
+/*  margin: 5px 0 5px 0;*/
+/*  display: inline-block;*/
+/*  border: 1px solid indigo;*/
+/*  border-radius: 10px 100px / 120px;*/
+/*  padding: 10px;*/
+/*  background: rgba(221, 160, 221,0.1);*/
+/*}*/
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: rgba(152, 251, 152,0.1);
-  outline: indigo;
+    padding: 5px 15px 5px 15px;
+    background-color: rgba(152, 251, 152,0.1);
+    outline: 1px solid indigo;
+    color: indigo;
+    font-size: 23px;
+    font-family: Caveat;
 }
 
 
-.btn_sign_in{
+input:-webkit-autofill {
+    font-size: 23px;
+    -webkit-text-fill-color: indigo;
+    -webkit-box-shadow: 0 0 0 30px #cffcd9 inset !important;
+
+}
+
+
+.is-invalid{
+    width: 100%;
+    margin: 5px 0 5px 0;
+    border-radius: 10px 100px / 120px;
+    padding: 5px 15px 5px 15px;
+    background: rgba(221, 160, 221,0.1);
+    border: 1px solid red;
+    font-family: Caveat;
+    font-weight: 500;
+    font-size: 23px;
+    color: indianred;
+}
+
+.is-invalid:focus{
+    box-shadow: 1px 1px 3px 1px red;
+    outline: none;
+}
+
+.success{
+    border: 5px solid seagreen;
+}
+/*.btn_sign_in{*/
+/*  background-color: rgba(152, 251, 152, 0.3);*/
+/*  font-family:Caveat;*/
+/*  font-size: 21px;*/
+/*  color: indigo;*/
+/*  margin: 8px 0;*/
+/*  border-radius: 10px 100px / 120px;*/
+/*  padding: 5px;*/
+/*  border: 1px solid indigo;*/
+/*  cursor: pointer;*/
+/*  width: 20%;*/
+/*}*/
+
+/*.btn_sign_in:hover {*/
+/*  transition-duration: 0.5s;*/
+/*  box-shadow: 5px 5px 40px indigo;*/
+/*  !*opacity: 0.8;*!*/
+/*}*/
+.btn_2{
   background-color: rgba(152, 251, 152, 0.3);
   font-family:Caveat;
   font-size: 21px;
@@ -60,37 +136,42 @@ input[type=text]:focus, input[type=password]:focus {
   padding: 5px;
   border: 1px solid indigo;
   cursor: pointer;
-  width: 20%;
+  width: 120px;
 }
 
-.btn_sign_in:hover {
+.btn_2:hover {
   transition-duration: 0.5s;
   box-shadow: 5px 5px 40px indigo;
   /*opacity: 0.8;*/
 }
-
 .border-top{
     display: flex;
     margin:0 auto;
-    width: 40%;
+    /*width: 30%;*/
     align-items: center;
     justify-content: start;
     font-family: Caveat;
     color: indigo;
-
+}
+.pt-2{
+    display: flex;
+    margin:10px auto 80px auto;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    font-family: Caveat;
+    color: indigo;
 }
 
 .text-muted{
-    margin-left: 16px;
+    /*margin-left: 16px;*/
     font-size: 21px;
-
-
 }
 
 .ml-2{
     margin-right: 10px;
     padding: 5px 10px 5px 10px;
-    font-size: 23px;
+    font-size: 21px;
     color: seagreen;
     border-radius: 10px 100px / 120px;
 }
@@ -99,6 +180,172 @@ input[type=text]:focus, input[type=password]:focus {
     transition-duration: 0.5s;
     box-shadow: 5px 5px 40px indigo;
 }
+.form-check-label{
+    font-family: Caveat;
+    color: seagreen;
+    font-size: 19px;
+}
+
+input[type='checkbox'] {
+    accent-color: seagreen;
+}
+
+/*input:-webkit-autofill,*/
+/*input:-webkit-autofill:hover,*/
+/*input:-webkit-autofill:focus,*/
+/*input:-webkit-autofill:active  {*/
+/*     !*box-shadow: 0 0 0 30px rgba(152, 251, 152, 0.1) inset !important;*!*/
+/*}*/
+
+.row{
+    display: flex;
+    margin:0 auto;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.col-md-12{
+    padding: 5px;
+    font-family: Caveat;
+    font-weight: 500;
+    font-size: 25px;
+    color: indigo;
+}
+
+.alert-danger{
+    color: red;
+
+}
+
+.alert-info{
+    color: indigo;
+
+}
+
+.alert-success{
+    color: seagreen;
+
+}
+
+/*POST_CREATE_FORM*/
+
+.post_create_form{
+    display: flex;
+    margin:0 auto;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
 
 
+.form-post-title-v2{
+    width: 100%;
+    margin: 5px 0 5px 0;
+    border: 1px solid indigo;
+    border-radius: 10px 100px / 120px;
+    padding: 5px 12px 5px 15px;
+    background: rgba(221, 160, 221,0.1);
+    font-family: Caveat;
+    color: indigo;
+    font-weight: 500;
+    font-size: 21px;
 
+}
+
+.form-post-textarea{
+    width: 100%;
+    height:200px;
+    margin: 5px 0 5px 0;
+    border: 1px solid indigo;
+    border-radius: 5px;
+    padding: 5px 12px 5px 15px;
+    background: rgba(221, 160, 221,0.1);
+    font-family: Caveat;
+    color: indigo;
+    font-weight: 500;
+    font-size: 21px;
+}
+
+.form-post-title-v2::placeholder {
+    color: rgba(46, 139, 87, 0.9);
+    font-family: Caveat;
+}
+
+.form-post-textarea::placeholder {
+    color: rgba(46, 139, 87, 0.9);
+    font-family: Caveat;
+
+}
+
+/*textarea[placeholder]{*/
+/*    background-color: rgba(152, 251, 152,0.1);*/
+/*    outline: indigo;*/
+/*    font-family: Caveat;*/
+/*    font-weight: 500;*/
+/*    color: rgba(46, 139, 87, 0.9);*/
+/*    font-size: 20px;*/
+/*}*/
+
+.form-post-textarea:focus {
+    padding: 1px 15px 1px 15px;
+    background-color: rgba(152, 251, 152, 0.1);
+    outline: 1px solid indigo;
+    color: indigo;
+    font-size: 23px;
+    font-family: Caveat;
+}
+
+/*.btn_new_post{*/
+/*   background-color: rgba(152, 251, 152, 0.3);*/
+/*  font-family:Caveat;*/
+/*  font-size: 21px;*/
+/*  color: indigo;*/
+/*  margin: 8px 0 0 170px;*/
+/*  border-radius: 10px 100px / 120px;*/
+/*  padding: 5px;*/
+/*  border: 1px solid indigo;*/
+/*  cursor: pointer;*/
+/*  width: 20%;*/
+/*}*/
+
+/*.btn_new_post:hover {*/
+/*  transition-duration: 0.5s;*/
+/*  box-shadow: 5px 5px 40px indigo;*/
+/*  !*opacity: 0.8;*!*/
+/*}*/
+
+
+.form-post-file{
+
+    font-family:Caveat;
+    font-size: 20px;
+    font-style: oblique;
+    color: indigo;
+}
+
+input[type=file]::file-selector-button{
+    margin: 8px 5px 5px 5px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(221, 160, 221,0.4);
+    border: 1px solid indigo;
+    font-family:Caveat;
+    font-size: 21px;
+    color: indigo;
+}
+
+input[type=file]::file-selector-button:hover {
+  transition-duration: 0.5s;
+  opacity: 0.5;
+}
+
+.alert-info-v2{
+    margin: 0  auto 400px auto;
+    font-family: Caveat;
+    font-weight: 500;
+    font-size: 25px;
+    color: indigo;
+
+}

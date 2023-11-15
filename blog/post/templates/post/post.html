@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="post">
+    <div class="user_post">
+        <div class="user_info_single_post">
+            <div class="left_side">
+                <img src="{{ url_for('static', filename='profile_pics/' + post.author.username + '/profile_img/' + post.author.image_file) }}"
+                        alt="" class="rounded-circle">
+
+                <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
+                <small class="text-muted-v2">{{ post.date_posted.strftime('%d.%m.%Y-%H.%M') }}</small>
+            </div>
+            {% if post.author == current_user %}
+                <div class="right_side">
+                    <a class="btn btn-info mb-5" href="{{ url_for('post.update_post', post_id=post.id) }}">Update</a>
+                    <button id="btnOpenModalFormDeletePost" onclick="document.getElementById('frmModalFormDeletePost').style.display='block'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Delete
+                    </button>
+                </div>
+            {% endif %}
+
+       </div>
+        <div class="posts_blog_2">
+            <div class ="art-1">
+                <p class="article-title"> {{ post.title }}</p>
+            </div>
+            <div class="img_cont">
+                {% if post.image_post is not none %}
+                <img src="{{ image_file }}" alt="post_img">
+                {% endif %}
+            <p class="article-content">{{ post.content}}</p>
+
+            </div>
+
+        </div>
+        <!-- Modal -->
+        <div id="frmModalFormDeletePost" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <small class="modal-title" id="deleteModalLabel">Are you sure you want to delete this article?</small>
+                    </div>
+                    <div class="modal-body">
+{#                        <button type="button" class="btn-close"  aria-label="Delete"></button>#}
+                        <form action="{{ url_for('post.delete_post', post_id=post.id) }}" method="post">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        <button id="btnCloseModalFormDeletePost" onclick="document.getElementById('frmModalFormDeletePost').style.display='none'"
+                            type="button" class="btn btn-secondary">Close</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
