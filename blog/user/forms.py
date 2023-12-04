@@ -2,8 +2,8 @@ from flask import flash
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, FileField
-from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, FileField, TextAreaField
+from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError, InputRequired
 from blog.models import User
 
 
@@ -33,6 +33,13 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
 
+class AddCommentForm(FlaskForm):
+    body = TextAreaField('Your comment', validators=[InputRequired()])
+    submit = SubmitField('Submit')
+
+
+
+
 
 class UpdateAccountForm(FlaskForm):
     username = StringField('User name', validators=[DataRequired(), Length(min=4, max=20)])
@@ -57,7 +64,7 @@ class UpdateAccountForm(FlaskForm):
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Reset the password')
+    submit = SubmitField('Reset')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
@@ -69,4 +76,4 @@ class RequestResetForm(FlaskForm):
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm the password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Reset the password')
+    submit = SubmitField('Reset')

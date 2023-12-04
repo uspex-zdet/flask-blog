@@ -2,43 +2,41 @@
 
 {% block content %}
 
-<div class="login_form reset_token">
+<div class="login_form">
     <form action="" method="POST">
 
         {{ form.hidden_tag() }}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Сбросить пароль</legend>
+            <legend class="legend">Reset password</legend>
 
             <div class="form-group">
                 {% if form.password.errors %}
-                {{ form.password(class='form-control form-control-lg is-invalid', placeholder="Пароль") }}
+                {{ form.password(class='form-post-title is-invalid', placeholder="password") }}
                 <div class="invalid-feedback">
                     {% for errors in form.password.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                    {{ form.password(class='form-control form-control-lg', placeholder="Пароль") }}
+                    {{ form.password(class='form-post-title', placeholder="password") }}
                 {% endif %}
             </div>
             <br>
             <div class="form-group">
                 {% if form.confirm_password.errors %}
-                {{ form.confirm_password(class='form-control form-control-lg is-invalid', placeholder="Подтвердите пароль") }}
+                {{ form.confirm_password(class='form-post-title is-invalid', placeholder="confirm password") }}
                 <div class="invalid-feedback">
                     {% for errors in form.confirm_password.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                    {{ form.confirm_password(class='form-control form-control-lg', placeholder="Подтвердите пароль") }}
+                    {{ form.confirm_password(class='form-post-title', placeholder="confirm password") }}
                 {% endif %}
             </div>
 
-        </fieldset>
 
         <div class="form-group">
-            {{ form.submit(class='btn_log_in') }}
+            {{ form.submit(class='btn_2') }}
         </div>
 
     </form>

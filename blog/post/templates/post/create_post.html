@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{#{{ ckeditor.load() }}#}
+
 <div class="post_create_form">
     <form action="" class="form_sign_in" enctype="multipart/form-data" method="POST">
 
@@ -22,5 +25,15 @@
         {{ form.submit(class='btn_2') }}
 
     </form>
+{#    {{ ckeditor.load() }}#}
+{#    {{ ckeditor.config(name='content') }}#}
+{##}
+{##}
+{##}
+{##}
+{#    <script>#}
+{#    CKEDITOR.addCss(".cke_editable{cursor:text; font-size: 20px; color: indigo;}");#}
+{#    CKEDITOR.addCss("body{cursor:text; background-color: #FFF5FD; font-family: Caveat !important; }");#}
+{#    </script>#}
 </div>
 {% endblock content %}

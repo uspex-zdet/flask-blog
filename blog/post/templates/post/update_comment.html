@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="post_create_form">
+    <form action="" class="form_sign_in" enctype="multipart/form-data" method="POST">
+        {{ form.hidden_tag() }}
+    <legend class="legend">Update the comment</legend>
+
+    <div class="invalid-feedback">
+                        {% for errors in form.body.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+    </div>
+
+                {% if form.body.errors %}
+                    {{ form.body(class='form-post-textarea is-invalid') }}
+
+                {% else %}
+                    {{form.body(class='form-post-textarea')  }}
+                {% endif %}
+
+    <br>
+        <div class = "form-group">
+            {{ form.submit(class='btn_2') }}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

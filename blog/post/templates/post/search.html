@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    {% for post in search_posts %}
+
+            <div class="choice_text">
+                <div class="date">
+                    <a class="mr-2" href="{{ url_for( 'users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                    <small class="text-muted-v2" aria-hidden="true">{{ post.date_posted.strftime('%d.%m.%Y %H:%M') }}
+                        <a class="comments-views" aria-hidden="true">Views
+                        {{ post.views }} | {{ post.comments|count if post.comments else 0 }} Comments</a>
+                    </small>
+                </div>
+                    <a class="article-title-3" href="{{ url_for('post.post', post_id=post.id) }}">{{ post.title|safe }}</a>
+
+                <p class="article-content">{{ post.content|safe |truncate(200, True) }}</p>
+            </div>
+
+    {% endfor %}
+
+
+<!--================End News Area =================-->
+
+<!--================ start footer Area  =================-->
+{% endblock content %}

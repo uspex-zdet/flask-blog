@@ -57,16 +57,16 @@ def random_avatar(user):
 
 def send_reset_email(user):
     token = user.get_reset_token()
-    msg = Message('Запрос на смену пароля',
+    msg = Message('Password change request',
                   sender='noreply@demo.com',
                   recipients=[user.email])
     msg.body = f"""
-    Чтобы сбросить ваш пароль, перейдите по этой ссылке:
-    {url_for('user.reset_token', token=token, _external=True)}
+    To reset your password, follow this link:
+    {url_for('users.reset_token', token=token, _external=True)}
 
-    Если вы не делали данный запрос, просто проигнорируйте это письмо!
-    Никаких изменений произведено не будет!
+    If you have not made this request, simply ignore this letter!
+    No changes will be made!
 
-    Отвечать на данное письмо не нужно так как оно сгенерировано автоматически.
+   There is no need to reply to this letter as it is generated automatically.
     """
     mail.send(msg)

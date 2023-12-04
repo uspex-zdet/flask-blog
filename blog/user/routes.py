@@ -120,6 +120,37 @@ def delete_user(username):
         flash('Administration!', 'info')
         return redirect(url_for('users.profile'))
 
+@users.route('/reset_password', methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.blog'))
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('Password recovery instructions were sent to the specified email.', 'info')
+        return redirect(url_for('users.login'))
+    return render_template('user/reset_request.html', form=form, title='Password reset')
+
+
+@users.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('main.blog'))
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash('Incorrect or expired token', 'warning')
+        return redirect(url_for('users.reset_request'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash('Your password has been updated! You can login to the blog', 'success')
+        return redirect(url_for('users.login'))
+    return render_template('user/reset_token.html', form=form, title='Password reset')
+
+
 
 @users.route('/logout')
 def logout():
