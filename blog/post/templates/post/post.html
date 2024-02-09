@@ -5,16 +5,20 @@
 <div class="post">
     <div class="user_post">
         <div class="user_info_single_post">
-            <div class="left_side">
-                <img src="{{ url_for('static', filename='profile_pics/' + post.author.username + '/profile_img/' + post.author.image_file) }}"
+            <div class="left_side_v2">
+                <img src="{{ url_for('static', filename='profile_pics/' + 'users/' + post.author.username + '/profile_img/' + post.author.image_file) }}"
                         alt="" class="rounded-circle">
 
                 <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
-                <small class="text-muted-v2">{{ post.date_posted.strftime('%d.%m.%Y-%H.%M') }}</small>
+                <small class="text-muted-v2">{{ post.date_posted.strftime('%d.%m.%Y-%H:%M') }}</small>
+                <div class="category-style-2">
+                    <small class="category-type"> category: </small>
+                    <a class="category-name" href="{{ url_for('posts.category', category_str=post.category) }}">{{ post.category}} </a>
+                </div>
             </div>
             {% if post.author == current_user %}
-                <div class="right_side">
-                    <a class="btn btn-info mb-5" href="{{ url_for('post.update_post', post_id=post.id) }}">Update</a>
+                <div class="right_side_v2">
+                    <a class="btn btn-info mb-5" href="{{ url_for('posts.update_post', slug=post.slug) }}">Update</a>
                     <button id="btnOpenModalFormDeletePost" onclick="document.getElementById('frmModalFormDeletePost').style.display='block'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Delete
                     </button>
@@ -24,19 +28,72 @@
        </div>
         <div class="posts_blog_2">
             <div class ="art-1">
-                <p class="article-title"> {{ post.title }}</p>
+                <p class="article-title"> {{ post.title|safe }}</p>
             </div>
             <div class="img_cont">
                 {% if post.image_post is not none %}
                 <img src="{{ image_file }}" alt="post_img">
                 {% endif %}
-            <p class="article-content">{{ post.content}}</p>
+            <p class="article-content">{{ post.content|safe}}</p>
 
             </div>
 
         </div>
+
+        <div class="tags">
+            {% for i in post.tags %}
+                    <div class="bound">
+                        {% if post.author == current_user %}
+                            <div class="tag"><a href="{{ url_for('posts.tag', tag_str=i.name) }}">{{ i.name }}</a></div>
+                            <a class="btn-delete-tag" href="{{ url_for( 'posts.delete_tag', tag_id=i.id) }}">Delete</a>
+                        {% else %}
+                            <div class="tag"><a href="{{ url_for('posts.tag', tag_str=i.name) }}">{{ i.name }}</a></div>
+                        {% endif %}
+                    </div>
+            {% endfor %}
+        </div>
+        {% if post.author == current_user %}
+        <form method="POST" action="">
+            {{ form_add_tag.hidden_tag() }}
+            <div class="single-post-tags">
+                <div class="word-tag">Tag: </div>
+                {{ form_add_tag.tag_form(class='form-post-tag', placeholder='Multiple tags via /', type="tag")}}
+                {{ form_add_tag.submit(class='btn_new_tag', value='Add') }}
+            </div>
+        </form>
+        {% else %}
+        {% endif %}
+
+
+        <div class="post_stat_side">
+
+            <div class="left_side_stat_post">&#128065;{{ post.views }}</div>
+            <div class="right_side_stat_post">
+
+                {% if current_user.id in post.likes|map(attribute="user_id")|list %}
+                    <i class="fa-solid fa-heart" id="like-button-{{post.id}}"  onclick="like({{post.id}})"></i>
+                {% else %}
+                    <i class="fa-regular fa-heart" id="like-button-{{post.id}}" onclick="like({{post.id}})"></i>
+                {% endif %}
+                 <span id="likes-count-{{post.id}}">{{ post.likes|length }}</span>
+            </div>
+
+
+{#                {% if current_user.is_authenticated %}#}
+{#                    {% if current_user.has_liked_post(post) %}#}
+{#                        <a  class="right_side_stat_post_2" href="{{ url_for('posts.like_action', slug=post.slug, action='unlike') }}">&#10084;</a>#}
+{#                    {% else %}#}
+{#                        <a class="right_side_stat_post"  href="{{ url_for('posts.like_action', slug=post.slug, action='like') }}">&#10084;</a>#}
+{#                    {% endif %}#}
+{#                    {{ post.likes|length }}#}
+{#                {% else %}#}
+{#                    {{ post.likes|length }}#}
+{#                {% endif %}#}
+        </div>
+
         <!-- Modal -->
-        <div id="frmModalFormDeletePost" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        {% if post.author == current_user %}
+        <div id="frmModalFormDeletePost" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
              aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -45,7 +102,7 @@
                     </div>
                     <div class="modal-body">
 {#                        <button type="button" class="btn-close"  aria-label="Delete"></button>#}
-                        <form action="{{ url_for('post.delete_post', post_id=post.id) }}" method="post">
+                        <form action="{{ url_for('posts.delete_post', slug=post.slug)}}" method="post">
                             <input type="submit" class="btn btn-danger" value="Delete">
                         <button id="btnCloseModalFormDeletePost" onclick="document.getElementById('frmModalFormDeletePost').style.display='none'"
                             type="button" class="btn btn-secondary">Close</button>
@@ -54,8 +111,66 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        {% endif %}
+    <div class="content_comment">
+{#        {% if current_user.is_auththenticated %}#}
+        <form method="POST" action="{{ url_for('posts.post', slug=post.slug) }}">
+            {{ form_add_comment.hidden_tag() }}
+            <legend class="border-bottom mb-6 font_update">Add your comment</legend>
+
+                    <p></p>
+                        {{ form_add_comment.body(class='form-post-textarea', placeholder="write comment here") }}
+                    <p></p>
+
+            <div class="form-group">
+                {{ form_add_comment.submit(class='btn_2-2') }}
+            </div>
+        </form>
+{#        {% endif %}#}
+    </div>
+
+    <div class="comment_side">
+        {% for i in comment %}
+            <div class="single_comment">
+                <div class="head_comment">
+                    <div class="left_comment_side">
+                        <a class="mr-3" href="{{ url_for('users.user_posts', username=i.username) }}">{{ i.username }}</a>
+                    </div>
+                    <div class="right_comment_side">{{ i.date_posted.strftime('%d.%m.%Y-%H:%M') }}</div>
+                </div>
+
+                <div class="body_comment">
+                    {{ i.body }} {{ i.id }}
+                </div>
+
+                <div class="stat_comment">
+                   <div class="right_side_stat_comment">
+
+
+
+                    {% if current_user.id in i.likes|map(attribute="user_id")|list %}
+                        <i class="fa-solid fa-heart" id="comment-like-button-{{i.id}}"  onclick="comment_like({{i.id}})"></i>
+                    {% else %}
+                        <i class="fa-regular fa-heart" id="comment-like-button-{{i.id}}" onclick="comment_like({{i.id}})"></i>
+                    {% endif %}
+                   <span id="comment-likes-count-{{i.id}}">{{ i.likes|length }}</span>
+                    </div>
+                </div>
+
+                    <div class="comment_btn">
+                        {% if post.author == current_user or current_user.username == i.username or current_user.is_admin %}
+                            <a class="btn-comment-update" href="{{ url_for( 'posts.update_comment', comment_id=i.id) }}">Update</a>
+                            <a class="btn mr-5" href="{{ url_for( 'posts.delete_comment', comment_id=i.id) }}">Delete</a>
+                        {% endif %}
+                    </div>
+            </div>
+        {% endfor %}
+
         </div>
     </div>
 </div>
+
 
 {% endblock %}

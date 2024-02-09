@@ -8,8 +8,35 @@
 
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/forms_style.css') }}">
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <script src="https://kit.fontawesome.com/e95d473c7d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/z6piket3p86e2bq467topgq6uk0v40u65s2xdw21bc0z157d/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.1/tinymce.min.js" integrity="sha512-SJh7xW/9SLzllt0PqjnYlomfUPi7UYF40TXU5m6kVXLFr1hdKe+L8Tqqoi1y9vlsMQBdGC2lZI0d6w04Nn6piQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
 
+    <script>
+tinymce.init({
+    selector: 'textarea',
+    skin_url: '/static/css/CUSTOM_2',
+    height: 200,
+    {#skin: 'CUSTOM',#}
+    {#content_css: 'CUSTOM',#}
+    {#font_css: '@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");',#}
+    {#   font_family_formats:'Caveat;',#}
+    setup: function (editor) {
+       editor.on('change', function (e) {
+           editor.save();
+       });
+    },
+    {##}
+});
+
+</script>
+
+
+
+
+
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+{#    <link rel="stylesheet " type="text/css" href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" />#}
     {% block title %}
          <title>{{ title if title else 'Flask-blog' }}</title>
     {% endblock title %}
@@ -20,16 +47,26 @@
 
 {% block menu %}
 <header class="header">
-<div class="logo">
-    <img src="{{url_for('static',filename='img/new2.png')}}" alt="logo">
-</div>
+    <div class="logo">
+        <img src="{{url_for('static',filename='img/new2.png')}}" alt="logo">
+    </div>
     <ul class="main_menu">
         {% if current_user.is_authenticated %}
         <li><a href="{{ url_for('main.home')}}"><p>Main</p></a></li>
         <li><a href="{{ url_for('main.blog')}}"><p>Blog</p></a></li>
         <li><a href="{{ url_for('users.profile')}}"><p>Profile</p></a></li>
-        <li><a href="{{ url_for('post.new_post')}}"><p>Create</p></a></li>
+        {% if current_user.is_admin %}
+            <li><a href="{{ url_for('admin.index') }}"><p>Admin</p></a></li>
+        {% endif %}
+        <li><a href="{{ url_for('posts.new_post')}}"><p>Create</p></a></li>
         <li><a href="{{ url_for('users.logout')}}"><p>Logout</p></a></li>
+
+
+        <div class="online_status">
+            <div class="online_user"></div>
+            <div class="current_user"><small>{{ current_user.username }}</small></div>
+        </div>
+
 
         {% else %}
         <li><a href="{{ url_for('main.home')}}"><p>Main</p></a></li>
@@ -39,30 +76,45 @@
         {% endif %}
 
     </ul>
+
 </header>
 {% endblock menu %}
 
-<div class="content">
+<div class="content_main">
 {#        <div class="empty_block"></div>#}
 {#        <div class="empty_block"></div>#}
-<main role="main" class="#">
-            <div class="row">
-            <div class="col-md-12">
-            {% with messages = get_flashed_messages(with_categories=True) %}
+    <main role="main" class="#">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                {% with messages = get_flashed_messages(with_categories=True) %}
 
-            {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-                {{ message }}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             </div>
-            {% endfor %}
-            {% endif %}
-
-            {% endwith %}
+{#            {% if current_user.is_authenticated %}#}
+            <div class="form_search">
+            <form action="{{ url_for('posts.search')}}" method="GET" class="form_search_blog">
+                <div>
+                    <input type="search" class="form-control_v2" name="q" placeholder="Enter a search phrase">
+                </div>
+                <div class="input-group-append">
+                    <input type="submit" class="btn_search" value="Search">
+                </div>
+            </form>
             </div>
-            </div>
-</main>
+{#           {% endif %}#}
+        </div>
+    </main>
 </div>
+
 {% block content %}
     <style>
   body {
@@ -89,5 +141,9 @@
 {% endblock footer %}
 
 </div>
+
+<script
+      type="text/javascript" src="{{ url_for('static', filename='js/index.js')}}"></script>
+
 </body>
 </html>

@@ -12,7 +12,7 @@
 
 
 .login_form{
-    width: 300px;
+    width: auto;
     display:flex ;
     margin: 0 auto;
     align-items: center;
@@ -33,7 +33,7 @@
   align-items: center;
   justify-content: center;
   font-family: Fleur De Leah;
-  color: SeaGreen;
+  color: darkgreen;
   font-size: 35px;
    text-align: center;
   letter-spacing: 2px;
@@ -47,7 +47,7 @@
     background: rgba(221, 160, 221,0.1);
     font-family: Caveat;
     font-weight: 500;
-    font-size: 23px;
+    font-size: 21px;
     color: indigo;
     /*color: rgba(46, 139, 87, 0.9);*/
 }
@@ -68,23 +68,24 @@
 /*  padding: 10px;*/
 /*  background: rgba(221, 160, 221,0.1);*/
 /*}*/
+input:-webkit-autofill {
+    -webkit-text-fill-color: indigo !important;
+    -webkit-box-shadow: 0 0 0 30px #EFFEEC inset !important;
+
+}
+
 
 input[type=text]:focus, input[type=password]:focus {
     padding: 5px 15px 5px 15px;
     background-color: rgba(152, 251, 152,0.1);
-    outline: 1px solid indigo;
+    outline: none;
     color: indigo;
-    font-size: 23px;
+    font-size: 21px;
     font-family: Caveat;
 }
 
 
-input:-webkit-autofill {
-    font-size: 23px;
-    -webkit-text-fill-color: indigo;
-    -webkit-box-shadow: 0 0 0 30px #cffcd9 inset !important;
 
-}
 
 
 .is-invalid{
@@ -96,7 +97,7 @@ input:-webkit-autofill {
     border: 1px solid red;
     font-family: Caveat;
     font-weight: 500;
-    font-size: 23px;
+    font-size: 21px;
     color: indianred;
 }
 
@@ -136,7 +137,7 @@ input:-webkit-autofill {
   padding: 5px;
   border: 1px solid indigo;
   cursor: pointer;
-  width: 120px;
+  width: 40%;
 }
 
 .btn_2:hover {
@@ -164,30 +165,42 @@ input:-webkit-autofill {
 }
 
 .text-muted{
-    /*margin-left: 16px;*/
+    width: auto;
     font-size: 21px;
 }
 
-.ml-2{
-    margin-right: 10px;
+.ml-2 a{
+    margin-right: 20px;
     padding: 5px 10px 5px 10px;
     font-size: 21px;
-    color: seagreen;
+    color: darkgreen;
     border-radius: 10px 100px / 120px;
 }
+a.ml-2{
+    margin-right: 20px;
+    padding: 5px 10px 5px 10px;
+    font-size: 21px;
+    color: darkgreen;
+    border-radius: 10px 100px / 120px;
 
-.ml-2:hover {
+}
+a.ml-2:hover {
+    transition-duration: 0.5s;
+    box-shadow: 5px 5px 40px indigo;
+}
+
+.ml-2 a:hover {
     transition-duration: 0.5s;
     box-shadow: 5px 5px 40px indigo;
 }
 .form-check-label{
     font-family: Caveat;
-    color: seagreen;
+    color: darkgreen;
     font-size: 19px;
 }
 
 input[type='checkbox'] {
-    accent-color: seagreen;
+    accent-color: darkgreen;
 }
 
 /*input:-webkit-autofill,*/
@@ -199,33 +212,49 @@ input[type='checkbox'] {
 
 .row{
     display: flex;
-    margin:0 auto;
-    width: 100%;
+    /*margin:auto;*/
+    width:auto;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
 }
 
-.col-md-12{
-    padding: 5px;
+.col-md-4{
+
+    margin-left: 100px;
+    padding: 5px 5px 0 5px;
     font-family: Caveat;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 20px;
     color: indigo;
 }
 
-.alert-danger{
+.alert-danger, .alert-message, .alert-warning{
     color: red;
+    padding:0 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px 1px indianred;
+
 
 }
 
 .alert-info{
-    color: indigo;
+    color: #7851A9;
+    padding:0 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px 1px palegreen;
+    /*font-style: oblique;*/
+    /*border-radius: 50px 50px;*/
+    /*background-color: #cffcd9;*/
+    /*padding: 0 10px;*/
 
 }
 
 .alert-success{
-    color: seagreen;
+    color: darkgreen;
+    padding:0 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px 1px palegreen;
 
 }
 
@@ -237,6 +266,7 @@ input[type='checkbox'] {
     width: 50%;
     align-items: center;
     justify-content: center;
+
 }
 
 
@@ -245,7 +275,7 @@ input[type='checkbox'] {
     margin: 5px 0 5px 0;
     border: 1px solid indigo;
     border-radius: 10px 100px / 120px;
-    padding: 5px 12px 5px 15px;
+    padding: 5px 15px 5px 15px;
     background: rgba(221, 160, 221,0.1);
     font-family: Caveat;
     color: indigo;
@@ -254,30 +284,33 @@ input[type='checkbox'] {
 
 }
 
+
 .form-post-textarea{
+
     width: 100%;
-    height:200px;
+    height:150px;
     margin: 5px 0 5px 0;
     border: 1px solid indigo;
     border-radius: 5px;
-    padding: 5px 12px 5px 15px;
+    padding: 5px 15px 5px 15px;
     background: rgba(221, 160, 221,0.1);
     font-family: Caveat;
     color: indigo;
     font-weight: 500;
     font-size: 21px;
 }
+
 
 .form-post-title-v2::placeholder {
     color: rgba(46, 139, 87, 0.9);
     font-family: Caveat;
 }
 
-.form-post-textarea::placeholder {
-    color: rgba(46, 139, 87, 0.9);
-    font-family: Caveat;
+/*.form-post-textarea::placeholder {*/
+/*    color: rgba(46, 139, 87, 0.9);*/
+/*    font-family: Caveat;*/
 
-}
+/*}*/
 
 /*textarea[placeholder]{*/
 /*    background-color: rgba(152, 251, 152,0.1);*/
@@ -288,14 +321,15 @@ input[type='checkbox'] {
 /*    font-size: 20px;*/
 /*}*/
 
-.form-post-textarea:focus {
-    padding: 1px 15px 1px 15px;
-    background-color: rgba(152, 251, 152, 0.1);
-    outline: 1px solid indigo;
-    color: indigo;
-    font-size: 23px;
-    font-family: Caveat;
-}
+/*.form-post-textarea:focus {*/
+
+/*    padding: 5px 15px 5px 15px;*/
+/*    background-color: rgba(152, 251, 152, 0.1);*/
+/*    outline: none;*/
+/*    color: indigo;*/
+/*    font-size: 21px;*/
+/*    font-family: Caveat;*/
+/*}*/
 
 /*.btn_new_post{*/
 /*   background-color: rgba(152, 251, 152, 0.3);*/
@@ -349,3 +383,86 @@ input[type=file]::file-selector-button:hover {
     color: indigo;
 
 }
+
+.picture_tag{
+    display: flex;
+    justify-content: space-between;
+}
+
+.picture_label{
+    padding-left: 3px;
+    font-family: Caveat;
+    font-style: oblique;
+    color: darkgreen;
+    font-size: 15px;
+
+
+}
+
+.form-post-tag{
+    width: 185px;
+    height: 26px;
+    margin-top: 10px;
+    border: 1px solid indigo;
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-family: Caveat;
+    font-size: 20px;
+}
+
+.form-post-tag::placeholder{
+    color: rgba(46, 139, 87, 0.9);
+
+}
+
+.form-post-tag[type="tag"]:focus {
+    outline: none;
+    width: 185px;
+    border-radius: 5px;
+    border: 1px solid indigo;
+    padding: 1px 5px;
+    background-color: rgba(152, 251, 152, 0.1);
+    font-family: Caveat;
+    font-size: 20px;
+    color: indigo;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.form-post-category {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+
+
+}
+.select-category{
+    font-size: 20px;
+    margin-right: 10px;
+    font-family: Caveat;
+    color: indigo;
+
+}
+.post-category {
+    border-radius: 5px;
+    border: 1px solid indigo;
+    background-color: rgba(221, 160, 221,0.1);
+}
+select.post-category {
+
+    padding: 0 5px;
+    font-family: Caveat;
+    color: indigo;
+    font-size: 20px;
+
+}
+.post-category:focus {
+    outline: none;
+    background-color: rgba(152, 251, 152, 0.1);
+
+}
+

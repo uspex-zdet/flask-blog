@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="posts_category_side">
+<div class="category-title">
+        <div class="legend">Category articles:</div>
+        <i>{{ current_category.category }}</i>
+</div>
+       <div class="list_posts_category">
+
+<ol>
+     {% for post in post_category %}
+
+         <li class="article-title "><a href="{{ url_for('posts.post', slug=post.slug) }}">{{ post.title }}</a></li>
+            {% if post.content|count >= 100 %}
+                <p class="article-content">{{ post.content[0:300] }}...</p>
+            {% else %}
+                <p class="article-content" >{{ post.content }}</p>
+            {% endif %}
+        {% endfor %}
+
+
+</ol>
+</div>
+    </div>
+{% endblock %}

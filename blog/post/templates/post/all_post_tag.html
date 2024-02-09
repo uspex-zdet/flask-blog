@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="posts_category_side">
+<div class="category-title">
+ <div class="legend">Tag articles:</div>
+    <i>{{ current_tag.name }}</i>
+</div>
+
+
+<div class="list_posts_category">
+
+<ol>
+
+{% for post in name_tags %}
+
+    <li class="article-title"><a href="{{ url_for('posts.post', slug=post.tag_post.slug) }}">{{ post.tag_post.title|capitalize }}</a></li>
+
+         <p class="mr-2">{{ post.tag_post.author.username }}</p>
+
+    {% endfor %}
+</ol>
+</div>
+    </div>
+{% endblock %}

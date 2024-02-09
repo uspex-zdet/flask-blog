@@ -3,7 +3,7 @@
 {% block content %}
 <div class="wrapper_content">
     <div class="info_user_blog_left">
-        <img src="{{ url_for('static', filename='profile_pics/' + user.username + '/' + 'profile_img/' + user.image_file) }}"
+        <img src="{{ url_for('static', filename='profile_pics/' + 'users/' + user.username + '/' + 'profile_img/' + user.image_file) }}"
             alt="" class="rounded-circle">
         <small class="mr-2" href="{{ url_for('users.user_posts', username=user.username)}}">{{ user.username }}</small>
         <p class="mb-3">({{ posts.total }})</p>
@@ -12,7 +12,7 @@
     {% for post in posts.items %}
 
 <div class="post">
-    <a class="article-title" href="{{ url_for('post.post', post_id=post.id) }}">{{ post.title }}</a>
+    <a class="article-title" href="{{ url_for('posts.post', slug=post.slug) }}">{{ post.title }}</a>
 </div>
 {% endfor %}
 

@@ -5,46 +5,50 @@
 <div class="login_form">
     <form action="" method="POST">
 
-        {{ form.hidden_tag() }}
+        {{ form_login.hidden_tag() }}
             <legend class="legend">{{ legend }}</legend>
 
             <div class="form-group">
-                {% if form.email.errors %}
-                {{ form.email(class='ё is-invalid', placeholder="email") }}
+                {% if form_login.email.errors %}
+                {{ form_login.email(class='form-post-title is-invalid', placeholder="email") }}
                 <div class="invalid-feedback">
-                    {% for errors in form.email.errors %}
+                    {% for errors in form_login.email.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                    {{ form.email(class='form-post-title', placeholder="email") }}
+                    {{ form_login.email(class='form-post-title', placeholder="email") }}
                 {% endif %}
             </div>
 
-                {% if form.password.errors %}
-                {{ form.password(class='form-post-title is-invalid', placeholder='password') }}
+                {% if form_login.password.errors %}
+                {{ form_login.password(class='form-post-title is-invalid', placeholder='password') }}
                 <div class="invalid-feedback">
-                    {% for errors in form.password.errors %}
+                    {% for errors in form_login.password.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                    {{ form.password(class='form-post-title', placeholder='password') }}
+                    {{ form_login.password(class='form-post-title', placeholder='password') }}
                 {% endif %}
 
             <div class="form-check">
-                 {{ form.remember(class='form-check-input') }}
-                 {{ form.remember.label(class='form-check-label') }}
+                 {{ form_login.remember(class='form-check-input') }}
+                 {{ form_login.remember.label(class='form-check-label') }}
             </div>
 
         <div class="form-group_button">
 
-           <div class="btn"> {{ form.submit(class='btn_2') }}</div>
+           <div class="btn"> {{ form_login.submit(class='btn_2') }}</div>
             <div class="border-top pt-2">
-    <small class="text-muted">
-        Need a profile? <a class='ml-2' href="{{ url_for('users.signup')}}">Sign Up</a>
-    </small>
-</div>
+                 <small class="text-muted ml-2">
+                    <a href="{{ url_for('users.reset_request') }}">Forgot your password?</a>
+                </small>
+
+                <small class="text-muted ml-2">
+                     <a href="{{ url_for('users.signup')}}">Sign Up</a>
+                </small>
+        </div>
 
         </div>
 

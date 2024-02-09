@@ -5,22 +5,22 @@
     <form action="" class="form_sign_in" enctype="multipart/form-data" method="POST">
 
 
-        {{ form.hidden_tag() }}
+        {{ form_post_update.hidden_tag() }}
 
         <legend class="legend">{{ legend }}</legend>
 
 
         <div class="invalid-feedback">
-            {% for errors in form.title.errors %}
+            {% for errors in form_post_update.title.errors %}
             <span>{{ error }}</span>
             {% endfor %}
         </div>
 
-        {{ form.title(class='form-post-title-v2', placeholder='Update title') }}
-        {{ form.content(class='form-post-textarea', placeholder='Update content') }}
-        {{ form.picture(class='form-post-file') }}
-
-        {{ form.submit(class='btn_2') }}
+        {{ form_post_update.title(class='form-post-title-v2', placeholder='Update title') }}
+        {{ form_post_update.content(class='form-post-textarea', placeholder='Update content') }}
+        {{ form_post_update.picture(class='form-post-file') }}
+        {{ form_post_update.category(class='post-category')}}
+        {{ form_post_update.submit(class='btn_2') }}
 
     </form>
 </div>

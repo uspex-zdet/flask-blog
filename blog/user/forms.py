@@ -2,28 +2,30 @@ from flask import flash
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, FileField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, FileField, SelectField
 from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
 from blog.models import User
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=20)])
+    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=20)],
+                           render_kw={'class': 'register_form'})
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm password', validators=[DataRequired(), EqualTo('password')])
+    role = SelectField('Roles', choices=[('admin', 'admin'), ('user', 'user')])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
-            flash('This username is already taken. Please choose different one', 'danger')
+            # flash('This username is already taken. Please choose different one', 'danger')
             raise ValidationError('This username is already taken. Please choose different one')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            flash('This email is already taken. Please choose different one', 'danger')
+            # flash('This email is already taken. Please choose different one', 'danger')
             raise ValidationError('This email is already taken. Please choose different one')
 
 
@@ -57,7 +59,7 @@ class UpdateAccountForm(FlaskForm):
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Reset the password')
+    submit = SubmitField('Reset')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
@@ -69,4 +71,4 @@ class RequestResetForm(FlaskForm):
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm the password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Reset the password')
+    submit = SubmitField('Reset')

@@ -4,24 +4,25 @@
 
 <div class="content-section">
     <div class="left_side">
-        <p>Registered users: </p>
+        <p>Registered users: {{ users|count }} </p>
             <ul>
             {% for user in users %}
-                {% if current_user.id == 1 %}
                     <li>
                         <div class="card_user">
-                            <img src="{{ url_for('static', filename='profile_pics/' + user.username + '/' + 'profile_img' + '/' + user.image_file) }}"
+                            <img src="{{ url_for('static', filename='profile_pics/' + 'users/' + user.username + '/' + 'profile_img' + '/' + user.image_file) }}"
                                 alt="" class="rounded-circle">
-                            <a class="mr-2" href="{{ url_for('users.user_posts', username=user.username)}}">{{ user.username }}</a>
-                        </div>
-                        <a class="mr-5" href="{{ url_for('users.delete_user', username=user.username) }}">delete?</a>
-                {% else %}
-                    <li>
-                        <a class="mr-2" href="{{ url_for('users.user_posts', username=user.username)}}">{{ user.username }}</a></li>
-                {% endif %}
-                    </li>
+                            <a class="mr-2" href="{{ url_for('users.user_posts', username=user.username)}}">{{ user.username }}({{ user.posts|count }})</a>
 
-                {% endfor %}
+                        </div>
+                        {% if current_user.is_admin %}
+                            <a class="mr-5" href="{{ url_for('users.delete_user', username=user.username) }}">Delete</a>
+                        {% endif %}
+{#                    <li>#}
+{#                        <a class="mr-2" href="{{ url_for('users.user_posts', username=user.username)}}">{{ user.username }}</a></li>#}
+
+{#                    </li>#}
+
+            {% endfor %}
             </ul>
 
     </div>
@@ -31,7 +32,13 @@
 
         <ol>
             {% for post in user.posts %}
-               <li><a class="article-title-2"  href="{{ url_for('post.post', post_id=post.id)}}">{{ post.title }}</a></li>
+               <li><a class="article-title-2"  href="{{ url_for('posts.post', slug=post.slug)}}">{{ post.title|safe }}</a>
+                   <div class="category-style">
+                       <small class="category-type">category: </small>
+                       <a class="category-name" href="{{ url_for('posts.category', category_str=post.category) }}">{{ post.category }}</a></div>
+
+               </li>
+
             {% endfor %}
          </ol>
     </div>
@@ -42,6 +49,12 @@
             <div class="media-body">
                 <h4 class="profile-heading">{{ current_user.username }}</h4>
                 <p class="text-secondary">{{ current_user.email }}</p>
+
+                {% if current_user.last_seen %}
+                    <p class="text-secondary">{{ current_user.last_seen.strftime('%d.%m.%Y %H:%M') }}</p>
+                {% else %}
+                    <p class="text-secondary">Update after exit blog</p>
+                {% endif %}
             </div>
         </div>
 
@@ -50,49 +63,49 @@
 
             <form action="" method="POST" enctype="multipart/form-data">
 
-                {{ form.hidden_tag() }}
+                {{ form_update.hidden_tag() }}
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-6 font_update">Profile update</legend>
                     <div class="form-group">
-                        {{ form.username.label(class='form-control-label') }}
+                        {{ form_update.username.label(class='form-control-label') }}
 
-                        {% if form.username.errors %}
-                        {{ form.username(class='form-control form-control-lg is-invalid') }}
+                        {% if form_update.username.errors %}
+                        {{ form_update.username(class='form-control form-control-lg is-invalid') }}
                         <div class="invalid-feedback">
-                            {% for errors in form.username.errors %}
+                            {% for errors in form_update.username.errors %}
                             <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.username(class='form-control form-control-lg') }}
+                        {{ form_update.username(class='form-control form-control-lg') }}
                         {% endif %}
                     </div>
 
                     <div class="form-group">
-                        {{ form.email.label(class='form-control-label') }}
-                        {% if form.email.errors %}
-                        {{ form.email(class='form-control form-control-lg is-invalid') }}
+                        {{ form_update.email.label(class='form-control-label') }}
+                        {% if form_update.email.errors %}
+                        {{ form_update.email(class='form-control form-control-lg is-invalid') }}
                         <div class="invalid-feedback">
-                            {% for errors in form.email.errors %}
+                            {% for errors in form_update.email.errors %}
                             <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.email(class='form-control form-control-lg') }}
+                        {{ form_update.email(class='form-control form-control-lg') }}
                         {% endif %}
                     </div>
+
                     <div class="form-group">
-                        {{ form.picture.label(class ='form-control-label') }}
-                        {% if form.picture.errors %}
-                       {{ form.picture(class='form-control form-control-lg is-invalid') }}
+                        {{ form_update.picture.label(class ='form-control-label') }}
+                        {% if form_update.picture.errors %}
+                       {{ form_update.picture(class='form-control form-control-lg is-invalid') }}
                         <div class="invalid-feedback">
-                            {% for error in form.picture.errors %}
+                            {% for error in form_update.picture.errors %}
                                 <span class="text-danger">{{ error }}</span><br>
                             {% endfor %}
                         </div>
                         {% else %}
-                       {{ form.picture(class='form-control form-control-sm') }}
-
+                       {{ form_update.picture(class='form-control form-control-sm') }}
                         {% endif %}
 
                     </div>
@@ -101,7 +114,7 @@
         <br>
 
                 <div class="form-group">
-                    {{ form.submit(class='btn btn_2-1') }}
+                    {{ form_update.submit(class='btn btn_2-1') }}
                 </div>
 
             </form>

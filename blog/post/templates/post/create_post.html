@@ -1,26 +1,84 @@
 {% extends 'base.html' %}
 
+
+
 {% block content %}
+
+
+
+{#{{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}#}
+
 <div class="post_create_form">
-    <form action="" class="form_sign_in" enctype="multipart/form-data" method="POST">
+
+    <form action=""   class="form_sign_in" enctype="multipart/form-data" method="POST">
 
 
-        {{ form.hidden_tag() }}
+        {{ form_new_post.hidden_tag() }}
 
         <legend class="legend">{{ legend }}</legend>
+{##}
+{#        <div class="invalid-feedback">#}
+{#            {% for errors in form_new_post.title.errors %}#}
+{#            <span>{{ error }}</span>#}
+{#            {% endfor %}#}
+{#        </div>#}
 
 
-        <div class="invalid-feedback">
-            {% for errors in form.title.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
+        {{ form_new_post.title(class='form-post-title-v2', placeholder='Title') }}
+        {{ form_new_post.content(class='form-post-textarea', placeholder='Article') }}
+        {{ form_new_post.picture.label(class ='picture_label') }}
+        <div class="picture_tag">
+
+            {{ form_new_post.picture(class='form-post-file') }}
+            {{ form_new_post.tag_form(class='form-post-tag', placeholder='Multiple tags via /', type='tag')}}
+        </div>
+            <div class="form-post-category">
+            <i class="select-category">Select category: </i>
+            {{ form_new_post.category(class='post-category')}}
+            </div>
+        <div class="form-group">
+            {{ form_new_post.submit(class='btn_2') }}
         </div>
 
-        {{ form.title(class='form-post-title-v2', placeholder='Title') }}
-        {{ form.content(class='form-post-textarea', placeholder='Article') }}
-        {{ form.picture(class='form-post-file') }}
-        {{ form.submit(class='btn_2') }}
-
     </form>
+{#<script>#}
+{#    editor.save()#}
+{#    tinyMCE.triggerSave();#}
+{#</script>#}
+
+{#    {{ ckeditor.load()}}#}
+{#    {{ ckeditor.config(name='content',#}
+{#                               custom_config="#}
+{#                                        uiColor:'#C3FDC3',#}
+{#                                        height:100,#}
+{#                                        toolbar: [#}
+{#                                                    { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },#}
+{#                                                    { name: 'document', items: [ 'Save', 'NewPage', 'Templates' ,'-','Preview'] },#}
+{#                                                    { name: 'clipboard', items: [ 'Undo', 'Redo','-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'] },#}
+{##}
+{#                                                    { name: 'basicstyles', items: [ 'CopyFormatting', 'RemoveFormat' ,'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },#}
+{#                                                    { name: 'paragraph', items: [ 'HorizontalRule','PageBreak', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'] },#}
+{#                                                    '/',#}
+{#                                                    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },#}
+{#                                                    { name: 'insert', items: [ 'Table', 'Flash', 'Smiley', 'SpecialChar' ] },#}
+{#                                                    { name: 'element', items: ['Blockquote', 'CreateDiv', 'Iframe', '-'] },#}
+{#                                                    { name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },#}
+{#                                                    { name: 'styles', items: [ 'Source',  'Styles', 'Format', 'Font', 'FontSize' ] },#}
+{#                                                    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },#}
+{#                                                    { name: 'about', items: [ 'Language' , 'About'] }#}
+{#                                        ]#}
+{#                               ") }}#}
+{##}
+{##}
+{##}
+{##}
+{#    <script>#}
+{#    CKEDITOR.addCss(".cke_editable{cursor:text; font-size: 20px; color: indigo;}");#}
+{#    CKEDITOR.addCss("body{cursor:text; background-color: #FFF5FD; font-family: Caveat !important; }");#}
+{#    </script>#}
+
 </div>
+
 {% endblock content %}
+
+

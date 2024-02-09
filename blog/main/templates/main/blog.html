@@ -5,68 +5,71 @@
 <div class="blog_content_area">
 
 
-<div class="blog_content">
-{% if nothing %}
-    {# код для отрисовки сообщения о том, что нет постов#}
-{%  else %}
-    {# сюда попадаем только в том случае, если объект posts != None #}
-    {# объект post может быть не равен None только в том случае, когда
-       первичный ключ таблицы posts (поле id) равен переданному через current_user.id
-       идентификатору ползователя #}
-    {% for post in posts.items %}
+    <div class="blog_content">
+    {% if nothing %}
 
-    <div class="post">
-        <div class="info_user_blog">
-            <div class="info_user_blog_left">
-                <img src="{{ url_for('static', filename='profile_pics/' + post.author.username + '/' + 'profile_img/' + post.author.image_file) }}"
-                    alt="" class="rounded-circle">
-                <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
-            </div>
+    {%  else %}
 
-            <div class="info_user_blog_right a">
-            <small class="text-muted-v2">{{ post.date_posted.strftime('%d.%m.%Y-%H:%M') }}</small>
+        {% for post in posts.items %}
+
+            <div class="post">
+                <div class="info_user_blog">
+                    <div class="info_user_blog_left">
+                        <img src="{{ url_for('static', filename='profile_pics/'+ 'users/' + post.author.username + '/' + 'profile_img/' + post.author.image_file) }}"
+                            alt="" class="rounded-circle">
+                        <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
+                    </div>
+
+                    <div class="info_user_blog_right a">
+                    <small class="text-muted-v2">{{ post.date_posted.strftime('%d.%m.%Y-%H:%M') }}</small>
+                    </div>
+                </div>
+
+                <div class="posts_blog">
+                    <a class="article-title" href="{{ url_for('posts.post', slug=post.slug) }}">{{ post.title|safe  }}</a>
+                    {% if post.content|count >= 100 %}
+                        <p class="article-content">{{ post.content[0:300]|safe }}...</p>
+                    {% else %}
+                        <p class="article-content" >{{ post.content|safe  }}</p>
+                    {% endif %}
+                    {% if post.image_post is not none %}
+                        <img src="{{ url_for('static', filename='profile_pics/' + 'users/' + post.author.username + '/' + 'post_images/' + post.image_post) }}">
+                    {% endif %}
+                </div>
             </div>
+        {% endfor %}
+
+        <div class="post_paginate">
+
+            {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=3) %}
+                {% if page_num %}
+                    {% if posts.page == page_num %}
+                        <a class="btn btn-info mb-4" href="{{ url_for('main.blog', page=page_num) }}">{{ page_num }}</a>
+                    {% else %}
+                        <a class="btn btn-outline-success mb-4" href="{{ url_for('main.blog', page=page_num) }}">{{ page_num }}</a>
+                    {% endif %}
+                {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
         </div>
 
-        <div class="posts_blog">
-            <a class="article-title" href="{{ url_for('post.post', post_id=post.id) }}">{{ post.title }}</a>
-            {% if post.content|count >= 100 %}
-                <p class="article-content">{{ post.content[0:300] }}...</p>
-            {% else %}
-                <p class="article-content" >{{ post.content }}</p>
-            {% endif %}
-            {% if post.image_post is not none %}
-                <img src="{{ url_for('static', filename='profile_pics/' + post.author.username + '/' + 'post_images/' + post.image_post) }}">
-            {% endif %}
-        </div>
-</div>
-    {% endfor %}
-{% endif  %}
+     {% endif  %}
 
 
 
 
 
-<div class="post_paginate">
 
-    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=3) %}
-        {% if page_num %}
-            {% if posts.page == page_num %}
-                <a class="btn btn-info mb-4" href="{{ url_for('main.blog', page=page_num) }}">{{ page_num }}</a>
-            {% else %}
-                <a class="btn btn-outline-success mb-4" href="{{ url_for('main.blog', page=page_num) }}">{{ page_num }}</a>
-            {% endif %}
-        {% else %}
-            ...
-    {% endif %}
-    {% endfor %}
-</div>
+
+
+
 </div>
 
 <div class="info_posts_user">
 
 
-        <p>Total articles: {{ posts.total }}</p>
+        <small>Total articles: {{ posts.total }}</small>
 
 
         {% for user in all_users %}
@@ -74,7 +77,7 @@
             <p><a class="mr-2" href="{{ url_for('users.user_posts', username=user.username) }}">{{ user.username }}</a>({{ user.posts|count }})</p>
             {% endif%}
         {% endfor %}
-               <button class="create_post_btn"><a href="{{ url_for('post.new_post') }}" class="btn_sign_in">Create</a></button>
+               <button class="create_post_btn"><a href="{{ url_for('posts.new_post') }}" class="btn_sign_in">Create</a></button>
 
 </div>
 </div>

@@ -5,55 +5,57 @@
 
     <form action="" method="POST">
 
-        {{ form.hidden_tag() }}
+        {{ form_registration.hidden_tag() }}
             <legend class="legend">{{ legend }}</legend>
 
-                {% if form.username.errors %}
-                {{ form.username(class='form-post-title is-invalid', placeholder='username') }}
+                {% if form_registration.username.errors %}
+                {{ form_registration.username(class='form-post-title is-invalid', placeholder='username') }}
                 <div class="invalid-feedback">
-                    {%  for errors in form.username.errors %}
+                    {%  for errors in form_registration.username.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                    {{ form.username(class='form-post-title', placeholder='username') }}
+                    {{ form_registration.username(class='form-post-title', placeholder='username') }}
                 {% endif %}
 
-                {% if form.email.errors %}
-                {{ form.email(class='form-post-title is-invalid', placeholder='email') }}
+                {% if form_registration.email.errors %}
+                {{ form_registration.email(class='form-post-title is-invalid', placeholder='email') }}
                 <div class="invalid-feedback">
-                    {%  for errors in form.email.errors %}
+                    {%  for errors in form_registration.email.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                    {{ form.email(class='form-post-title', placeholder='email') }}
+                    {{ form_registration.email(class='form-post-title', placeholder='email') }}
                 {% endif %}
 
-                {% if form.password.errors %}
-                {{ form.password(class='form-post-title is-invalid', placeholder='password') }}
+                {% if form_registration.password.errors %}
+                {{ form_registration.password(class='form-post-title is-invalid', placeholder='password') }}
                 <div class="invalid-feedback">
-                    {%  for errors in form.password.errors %}
+                    {%  for errors in form_registration.password.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                    {{ form.password(class='form-post-title', placeholder='password') }}
+                    {{ form_registration.password(class='form-post-title', placeholder='password') }}
                 {% endif %}
 
-                {% if form.confirm_password.errors %}
-                {{ form.confirm_password(class='form-post-title is-invalid', placeholder='confirm password') }}
+                {% if form_registration.confirm_password.errors %}
+                {{ form_registration.confirm_password(class='form-post-title is-invalid', placeholder='confirm password') }}
                 <div class="invalid-feedback">
-                    {%  for errors in form.confirm_password.errors %}
+                    {%  for errors in form_registration.confirm_password.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% else %}
-                    {{ form.confirm_password(class='form-post-title', placeholder='confirm password') }}
+                    {{ form_registration.confirm_password(class='form-post-title', placeholder='confirm password') }}
                 {% endif %}
 
-            <div class="form-group">
-                {{ form.submit(class='btn_2') }}
+                {{ form_registration.role() }}
+
+                <div class="form-group">
+                    {{ form_registration.submit(class='btn_2') }}
 {#                {% if form.is_submitted() and form.errors|count > 0 %}#}
 {#                <div class="alert alert-danger alert-dismissible fade show" role="alert">#}
 {#                    {{ form.errors|count }} error(s):#}
